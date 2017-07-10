@@ -75,18 +75,61 @@ def callback(textResult):
     #To allow scrolling
     textResult.see(END)             
 
+def cbcRock(entry):
+    return lambda : setRock(entry)
 
+def cbcPaper(entry):
+    return lambda : setPaper(entry)
+
+def cbcScissors(entry):
+    return lambda : setScissors(entry)
+
+def cbcLizard(entry):
+    return lambda : setLizard(entry)
+
+def cbcSpock(entry):
+    return lambda : setSpock(entry)
+
+def setRock(entry):
+    entry.delete(0, END)
+    entry.insert(0, "Rock")
+
+def setPaper(entry):
+    entry.delete(0, END)
+    entry.insert(0, "Paper")
+
+def setScissors(entry):
+    entry.delete(0, END)
+    entry.insert(0, "Scissors")
+
+def setLizard(entry):
+    entry.delete(0, END)
+    entry.insert(0, "Lizard")
+
+def setSpock(entry):
+    entry.delete(0, END)
+    entry.insert(0, "Spock")
 
 top = Tk()
 textResult = Text(master = top)
 textResult.grid(column = 1)
 entry = Entry(master = top)
-entry.insert(0, "Enter Your Selection here")
 entry.grid(row = 0)
+entry.insert(0, "Press choice button")
 entryScore = Entry(master = top)
 entryScore.grid(column = 1)
 entryScore.insert(0, "CPU: 0 Player: 0")
 btn = Button(top, text="Play", command = cbc(textResult))
 btn.grid(row = 1)
-Button(top, text='Exit', command = top.destroy).grid(row = 3)
+btnRock = Button(top, text="Rock", command = cbcRock(entry))
+btnRock.grid(row = 1, column = 2)
+btnPaper = Button(top, text="Paper", command = cbcPaper(entry))
+btnPaper.grid(row = 2, column = 2)
+btnScissors = Button(top, text="Scissors", command = cbcScissors(entry))
+btnScissors.grid(row = 3, column = 2)
+btnLizard = Button(top, text="Lizard", command = cbcLizard(entry))
+btnLizard.grid(row = 4, column = 2)
+btnSpock = Button(top, text="Spock", command = cbcSpock(entry))
+btnSpock.grid(row = 5, column = 2)
+Button(top, text='Exit', command = top.destroy).grid(row = 2)
 top.mainloop()
