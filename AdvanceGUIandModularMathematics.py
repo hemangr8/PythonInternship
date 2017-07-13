@@ -41,13 +41,10 @@ def result (player, cpu):
     global countCPU
     if player == cpu:
         return "Draw"
-    elif player == 0 and cpu+2 < 5:
-        countCPU += 1
-        return "Player lost"
-    elif player == 0 and cpu+2 >= 5:
+    elif ((cpu + 1) % 5) == player:
         countPlayer += 1
         return "Player won"
-    elif (player-((cpu+2)%5))<=0:
+    elif ((cpu + 2) % 5) == player:
         countPlayer += 1
         return "Player won"
     else:
@@ -72,7 +69,7 @@ def callback(textResult):
     entryScore.delete(0, END)
     entryScore.insert(0, score)
     textResult.insert(END, text)
-    #To allow scrolling
+#To allow scrolling
     textResult.see(END)             
 
 def cbcRock(entry):
