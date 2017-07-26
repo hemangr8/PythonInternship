@@ -1,5 +1,6 @@
 from tkinter import *
 from SearchEngine import *
+import pygubu
 
 
 class SearchEngineUI:
