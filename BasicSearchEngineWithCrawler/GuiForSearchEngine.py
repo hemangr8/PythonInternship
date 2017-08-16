@@ -1,6 +1,5 @@
 from tkinter import *
 from SearchEngine import *
-import pygubu
 
 
 class SearchEngineUI:
@@ -10,14 +9,19 @@ class SearchEngineUI:
         count = 1
         text_results.delete('1.0', END)
         results = SearchEngine.search(entry_keyword.get())
-        for result in results:
-            if results[result] is not None:
-                text = "Result {} \n\nTitle :  {}\n\nLink  :  {}\n--------------------------------------------------------------------------------\n".format(count, str(results[result]), str(result))
-            else:
-                text = "Result {} \n\nTitle :  {}\n\nLink  :  {}\n--------------------------------------------------------------------------------\n".format(count, entry_keyword.get(), str(result))
+        if results == {}:
+            text = "No results found"
             text_results.insert(END, text)
             text_results.see(END)
-            count += 1
+        else:
+            for result in results:
+                if results[result] is not None:
+                    text = "Result {} \n\nTitle :  {}\n\nLink  :  {}\n--------------------------------------------------------------------------------\n".format(count, str(results[result]), str(result))
+                else:
+                    text = "Result {} \n\nTitle :  {}\n\nLink  :  {}\n--------------------------------------------------------------------------------\n".format(count, entry_keyword.get(), str(result))
+                text_results.insert(END, text)
+                text_results.see(END)
+                count += 1
 
     @staticmethod
     def callback(text_results, entry_keyword):
